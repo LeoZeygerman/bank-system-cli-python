@@ -3,7 +3,7 @@ import json
 def load_data():
     try:
         with open('data/user.json', 'r') as f:
-            return json.load()
+            return json.load(f)
     except:
         return []
     
