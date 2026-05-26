@@ -26,6 +26,8 @@ while True:
         
         else:
             print('Войти')
+            login = input('Введите логин: ')
+            password = input('Введите пароль: ')
             break
     except ValueError:
         print('Ошибка!')
