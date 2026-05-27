@@ -10,4 +10,7 @@ class Bank:
     def get_info(self):
         print(f'Имя: {self.name} | Фамилия: {self.last_name} | Номер телефона: {self.number} | Логин: {self.login} | Пароль: {self.password}')
     
+    def get_info_bank_menu(self):
+        print(f'Имя: {self.name} | Фамилия: {self.last_name} | Баланс: {self.balance}')
+    
     

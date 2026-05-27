@@ -26,8 +26,7 @@ while True:
             user_object = Bank(name, last_name, number, login, password, balance)
             user_object.get_info()
             print('Регистрация прошла успешно, вход...')
-            bank_menu()
-            break
+            bank_menu(user)
         
         else:
             while True:
@@ -35,13 +34,15 @@ while True:
                 login = input('Введите логин: ')
                 password = input('Введите пароль: ')
                 data = load_data()
+                found = False
                 for user in data:
                     if login == user['login'] and password == user['password']:
+                        found = True
                         print('Вы успешно вошли.')
-                        bank_menu() 
-                        break
-                    else:
-                        print(f'Ошибка! Проверьте логин или пароль.')
-                break
+                        bank_menu(user)
+                if not found:
+                    print(f'Ошибка! Проверьте логин или пароль.')
+                else:
+                    break
     except ValueError:
         print('Ошибка!')
