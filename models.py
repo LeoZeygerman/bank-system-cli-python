@@ -14,8 +14,12 @@ class Bank:
         print(f'Имя: {self.name} | Фамилия: {self.last_name} | Баланс: {self.balance}')
     
     def withdraw(self, amount):
-        if amount < self.balance:
+        if amount <= self.balance:
             self.balance -= amount
             print(f'Операция успешна! Баланс: {self.balance}')
         else:
             print(f'Недостаточно средств.')
+            
+    def put_money(self, amount):
+        self.balance += amount
+        print(f'Операция успешна! Баланс: {self.balance}')

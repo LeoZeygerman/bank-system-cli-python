@@ -22,8 +22,18 @@ def bank_menu(user):
                 amount = int(input('Введите сумму, которую хотите снять: '))
                 user_object = Bank(user['name'], user['last_name'], user['number'], user['login'], user['password'], user['balance'])
                 user_object.withdraw(amount)
-                user['balance'] = user_object.balance
-                save_data(data)
+                for user in data:
+                    user['balance'] = user_object.balance
+                    save_data(data)
+                
+            if choice == 3:
+                data = load_data()
+                amount = int(input('Введите сумму, которую хотите положить на счет: '))
+                user_object = Bank(user['name'], user['last_name'], user['number'], user['login'], user['password'], user['balance'])
+                user_object.put_money(amount)
+                for user in data:
+                    user['balance'] = user_object.balance
+                    save_data(data)
                     
             if choice == 5:
                 exit()
