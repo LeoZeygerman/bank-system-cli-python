@@ -1,4 +1,4 @@
-from storage import save_data, load_data
+from storage import save_data, load_data, load_history, save_history
 from models import Bank
 def bank_menu(user):
     try:
@@ -35,6 +35,30 @@ def bank_menu(user):
                     user['balance'] = user_object.balance
                     save_data(data)
                     
+            if choice == 4:
+                name = input('Введите имя пользователя, которому хотите перевести деньги: ')
+                number = int(input('Введите номер карты пользователя: '))
+                amount = int(input('Введите сумму, которую хотите перевести: '))
+                print(f'Перевод {name} | Номер карты: {number} | Сумма перевода: {amount}')
+                right = input('Все верно? Да/Нет: ').lower()
+                if right == 'да':
+                    data = load_data()
+                    user_object = Bank(user['name'], user['last_name'], user['number'], user['login'], user['password'], user['balance'])
+                    user_object.withdraw(amount)
+                    for user in data:
+                        user['balance'] = user_object.balance
+                        save_data(data)
+                    history = load_history()
+                    history_object = {
+                        'name': name,
+                        'number': number,
+                        'amount': amount
+                    }
+                    history.append(history_object)
+                    save_history(history)
+                else:
+                    print('Возврат.')
+
             if choice == 5:
                 exit()
             
