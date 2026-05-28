@@ -13,4 +13,9 @@ class Bank:
     def get_info_bank_menu(self):
         print(f'Имя: {self.name} | Фамилия: {self.last_name} | Баланс: {self.balance}')
     
-    
+    def withdraw(self, amount):
+        if amount < self.balance:
+            self.balance -= amount
+            print(f'Операция успешна! Баланс: {self.balance}')
+        else:
+            print(f'Недостаточно средств.')
