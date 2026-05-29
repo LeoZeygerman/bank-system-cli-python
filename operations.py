@@ -11,3 +11,14 @@ def withdraw_money(user):
             item['balance'] = user_object.balance      #user who in account
             user['balance'] = user_object.balance
     save_data(data)
+    
+def put_on(user):
+    data = load_data()
+    amount = int(input('Введите сумму, которую хотите положить на счет: '))
+    user_object = Bank(user['name'], user['last_name'], user['number'], user['login'], user['password'], user['balance'])
+    user_object.put_money(amount)
+    for item in data:
+        if item['login'] == user['login']:
+            item['balance'] = user_object.balance
+            user['balance'] = user_object.balance
+    save_data(data)
