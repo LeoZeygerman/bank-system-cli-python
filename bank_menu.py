@@ -1,5 +1,6 @@
 from storage import save_data, load_data, load_history, save_history
 from models import Bank
+from operations import withdraw_money
 def bank_menu(user):
     try:
         print (f'Имя: {user['name']} | Баланс: {user['balance']}')
@@ -18,13 +19,7 @@ def bank_menu(user):
                 continue
             
             if choice == 2:
-                data = load_data()
-                amount = int(input('Введите сумму, которую хотите снять: '))
-                user_object = Bank(user['name'], user['last_name'], user['number'], user['login'], user['password'], user['balance'])
-                user_object.withdraw(amount)
-                for user in data:
-                    user['balance'] = user_object.balance
-                    save_data(data)
+                withdraw_money(user)
                 
             if choice == 3:
                 data = load_data()
